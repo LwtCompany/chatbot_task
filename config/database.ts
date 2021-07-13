@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 
-mongoose.connect(`mongodb+srv://${process.env.LOGIN}:${process.env.PASSWORD}@cluster0.rjp1f.mongodb.net/graphql?retryWrites=true&w=majority`,
+mongoose.connect(`mongodb+srv://${process.env.LOGIN}:${process.env.PASSWORD}@cluster0.rjp1f.mongodb.net/chatbot?retryWrites=true&w=majority`,
                 {   useUnifiedTopology: true, 
                     useNewUrlParser: true 
                 });
