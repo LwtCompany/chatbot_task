@@ -8,7 +8,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
 exports.mongoose = mongoose_1.default;
 dotenv_1.default.config();
-mongoose_1.default.connect(`mongodb+srv://${process.env.LOGIN}:${process.env.PASSWORD}@cluster0.rjp1f.mongodb.net/graphql?retryWrites=true&w=majority`, { useUnifiedTopology: true,
+mongoose_1.default.connect(`mongodb+srv://${process.env.LOGIN}:${process.env.PASSWORD}@cluster0.rjp1f.mongodb.net/chatbot?retryWrites=true&w=majority`, { useUnifiedTopology: true,
     useNewUrlParser: true
 });
 mongoose_1.default.connection.on('error', (err) => { console.log('err', err); });

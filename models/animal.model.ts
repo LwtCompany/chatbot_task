@@ -1,11 +1,6 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const opts = {
-    created_at: { 
-        currentTime: () => Math.floor(Date.now() / 1000)
-    },
-  };
 
 const animalSchema = new Schema({
     name: {
@@ -24,7 +19,12 @@ const animalSchema = new Schema({
         type: String,
         required: true
     },
-    opts
+    date: { 
+        type: Date,
+        default: Date.now 
+    },
 });
 const Animal = mongoose.model('Animal', animalSchema);
-export {Animal};
+export = Animal;
+
+
