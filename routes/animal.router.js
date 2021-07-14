@@ -22,7 +22,7 @@ function http(request) {
         return body;
     });
 }
-router.post('/upload', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/upload/dog/image', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, color } = req.body;
         const response = yield http('https://random.dog/woof.json');
@@ -53,12 +53,22 @@ router.post('/upload', (req, res, next) => __awaiter(void 0, void 0, void 0, fun
         });
     }
 }));
-router.get('/list', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/list/dog/images', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let { color } = req.query;
-        const data = yield animal_model_1.default.find({
-            color: color
-        });
+        let { color, name } = req.query;
+        let data;
+        if (color)
+            data = yield animal_model_1.default.find({
+                color: color
+            });
+        if (name && data.length > 0)
+            data.filter(function (element) {
+                return element.name == 7;
+            });
+        else
+            data = yield animal_model_1.default.find({
+                name: name
+            });
         return res.status(200).send({
             message: "success",
             status: true,

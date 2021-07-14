@@ -9,6 +9,7 @@ interface Dog{
     url: string
 }
 
+
  async function http<T>( request: RequestInfo): Promise<T>{
     const response = await fetch(request);
     const body = await response.json();
@@ -16,7 +17,7 @@ interface Dog{
 }
 
 
-router.post('/upload', async (req, res, next) => {
+router.post('/upload/dog/image', async (req, res, next) => {
     try {
         const {name, color} = req.body;
         const response = await http<Dog>('https://random.dog/woof.json');
@@ -51,14 +52,19 @@ router.post('/upload', async (req, res, next) => {
     }
 });
 
-router.get('/list', async(req, res, next) => {
+
+router.get('/list/dog/images', async(req, res, next) => {
     try {
             let {color} = req.query;
-            const data = await Animal.find({
-               
-                color: color
-            });
-
+            let data;
+           
+            if(color)
+                data = await Animal.find({
+                    color: color
+                });
+            else
+                data = await Animal.find({});
+            
             return res.status(200).send({
                 message: "success",
                 status: true,
