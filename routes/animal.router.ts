@@ -43,7 +43,7 @@ router.post('/upload', async (req, res, next) => {
         });
 
     } catch (error) {
-        return res.status(200).send({
+        return res.status(404).send({
             message: "error",
             status: false,
             data: error+""
@@ -53,9 +53,20 @@ router.post('/upload', async (req, res, next) => {
 
 router.get('/list', async(req, res, next) => {
     try {
-        
+            let {color} = req.query;
+            const data = await Animal.find({
+               
+                color: color
+            });
+
+            return res.status(200).send({
+                message: "success",
+                status: true,
+                data: data
+            });
+
     } catch (error) {
-        return res.status(200).send({
+        return res.status(404).send({
             message: "error",
             status: false,
             data: error+""
